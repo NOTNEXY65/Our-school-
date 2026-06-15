@@ -1,9 +1,3 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-body {
-  background-color: #ffffff;
-  color: #1f2937;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
