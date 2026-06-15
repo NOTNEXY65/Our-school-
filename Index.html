@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our School - Business Demo</title>
+    
+    <!-- Google Fonts for exact match with 1000199356_2.jpg -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* Global Typography Updates */
+        body { 
+            background-color: #ffffff; 
+            color: #2d3748; 
+            font-family: 'Merriweather', Georgia, serif; /* Clean serif font for body */
+            line-height: 1.85; /* Increased spacing like the image */
+            overflow-x: hidden; 
+        }
+        
+        :root { 
+            --primary-blue: #004080; 
+            --light-blue-bg: #f8fafc; 
+            --accent-blue: #0066cc;
+            --card-shadow: rgba(0, 64, 128, 0.08);
+        }
+
+        /* --- Navbar --- */
+        header { background: var(--primary-blue); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { color: #ffffff; font-size: 1.4rem; font-weight: bold; font-family: sans-serif; }
+        .menu-btn { background: none; border: none; color: #ffffff; font-size: 1.8rem; cursor: pointer; }
+        
+        /* Sidebar Menu */
+        .sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: var(--primary-blue); z-index: 200; padding: 2rem; transition: right 0.4s ease-in-out; }
+        .sidebar.active { right: 0; }
+        .close-btn { background: none; border: none; color: #ffffff; font-size: 2rem; cursor: pointer; float: right; }
+        .sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; clear: both; margin-top: 3rem; }
+        .sidebar-links a { color: #ffffff; text-decoration: none; font-size: 1.3rem; font-weight: 500; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: sans-serif; }
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); z-index: 150; display: none; }
+        .menu-overlay.active { display: block; }
+
+        /* Headings Font Override */
+        .section-title { 
+            text-align: center; 
+            color: var(--primary-blue); 
+            font-size: 2.4rem; 
+            margin: 4rem 0 2rem; 
+            font-weight: 700; 
+            font-family: 'Playfair Display', serif;
+        }
+        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent-blue); margin: 12px auto 0; border-radius: 2px; }
+
+        /* --- Our Legacy Plain Text Custom Sizes --- */
+        .legacy-text-container { max-width: 900px; margin: 4rem auto 2rem; padding: 0 6%; }
+        
+        /* Heading style matched to file 1000199356_2.jpg */
+        .legacy-text-container h2 { 
+            color: #1a3a5f; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2.3rem; 
+            margin-bottom: 2rem; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            letter-spacing: 0.5px; 
+        }
+        
+        /* Larger font size to closely replicate the reference screenshot */
+        .legacy-text-container p { 
+            font-size: 1.25rem; 
+            color: #2d3748; 
+            margin-bottom: 2.2rem; 
+            text-align: left; 
+            font-weight: 300;
+        }
+        .legacy-text-container strong {
+            font-weight: 700;
+            color: #111111;
+        }
+
+        /* --- Dynamic Core Animations --- */
+        .animate-down-to-up { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .animate-r-to-l { opacity: 0; transform: translateX(100px); transition: all 0.8s ease-out; }
+        .animate-l-to-r { opacity: 0; transform: translateX(-100px); transition: all 0.8s ease-out; }
+        
+        .appear { opacity: 1; transform: translate(0, 0); }
+
+        /* --- Vision & Mission Layout --- */
+        .vm-container { max-width: 800px; margin: 0 auto; padding: 0 5%; display: flex; flex-direction: column; gap: 2.5rem; }
+        .vm-card { background: #ffffff; border-radius: 12px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 10px 30px var(--card-shadow); border: 1px solid #e2e8f0; }
+        .vm-card h2 { color: var(--primary-blue); font-size: 2rem; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        .vm-card p { font-size: 1.15rem; }
+        .vm-icon-circle { width: 80px; height: 80px; background-color: var(--primary-blue); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
+        .vm-icon-circle svg { width: 40px; height: 40px; fill: none; stroke: #ffffff; stroke-width: 2; }
+
+        /* --- School Levels Grid --- */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; padding: 0 5% 5rem; max-width: 1200px; margin: 0 auto; }
+        .school-card { background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px var(--card-shadow); border: 1px solid #e2e8f0; text-align: center; }
+        .card-img-wrapper { width: 100%; height: 240px; overflow: hidden; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .card-content { padding: 1.8rem; }
+        .card-content h3 { color: var(--primary-blue); font-size: 1.6rem; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; }
+        .card-content p { color: var(--accent-blue); font-size: 1.1rem; font-weight: 600; font-family: sans-serif; }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; background: #25D366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; }
+        .whatsapp-btn svg { width: 32px; height: 32px; fill: #ffffff; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">🏫 Our School</div>
+        <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+    </header>
+
+    <!-- Slide Bar Menu -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="sidebar" id="sidebarMenu">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <div class="sidebar-links">
+            <a href="#" onclick="toggleMenu()">Home</a>
+            <a href="#" onclick="toggleMenu()">About</a>
+            <a href="#" onclick="toggleMenu()">Academics</a>
+        </div>
+    </div>
+
+    <!-- Section 1: Introduction (Updated Typography sizes) -->
+    <div class="legacy-text-container animate-down-to-up">
+        <h2>Our Legacy</h2>
+        <p><strong>Our School</strong> was established in the year 2008 under the aegis of <em>Harkul Educational and Welfare Society</em> &ndash; run by the <em>Kairon family</em> dedicated to school education, and through it - upliftment of remote areas of Patti and Kairon since one hundred years.</p>
+        <p>The school, therefore upholds a long-term ethos of excellence in education. The serene farms of Kairon, Tarn Taran, Punjab are home to Our School that expertly merges academic ambition with a range of rich extra-curricular pursuits, shaping children into well rounded, socially active, global citizens. Our keen focus on personal development, commitment to quality and dedication to continuous improvement empowers our students to handle whatever life may throw at them. Our greatest strength lies in our commitment to community &ndash; the crafting together of our shared vision. The cumulative experience of all these years has molded the school into a multi-disciplinary and multi-dimensional sanctum of learning and knowledge; where the students are shaped with love and care to elicit their talent, potential as well as to induce new skills to prepare them to face the world.</p>
+        <p><strong>Our School Board and Philosophy:</strong> Our School is affiliated to Central Board of Secondary Education (C.B.S.E), New Delhi and has students across Elementary to Senior Secondary Grade levels. The school has a well maintained, state of the art infrastructure that is surrounded by lush green farm lands providing a serene educational atmosphere for our students. The school is equipped with Science Laboratories, Composite, Math and Language labs, IT labs, Library and Activity halls. The classrooms are spacious and the school follows a 1:30 teacher to student ratio. The sports infrastructure at Our School supports the following sports: Basketball, Badminton, Boxing, Shot Put, Volleyball, athletics spaces, skating to name a few. Indoor games like Chess, Carrom, Table Tennis etc are supported by the school. The school is constantly trying to integrate and align itself with the NEP 2020 and NCF norms.</p>
+    </div>
+
+    <!-- Section 2: Goals (Right-to-Left and Left-to-Right Side Animations) -->
+    <h2 class="section-title">Our Goals</h2>
+    <div class="vm-container">
+        
+        <!-- Our Vision Card (Right to Left) -->
+        <div class="vm-card animate-r-to-l">
+            <div class="vm-icon-circle">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+            <h2>Our Vision</h2>
+            <p>Empower students with meaningful experiences that enable them to become reflective practitioners and lifelong learners who will uphold the universal values of empathy, service and discipline.</p>
+        </div>
+
+        <!-- Our Mission Card (Left to Right) -->
+        <div class="vm-card animate-l-to-r">
+            <div class="vm-icon-circle">
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.92 14.92 0 01-9.82 3.17m9.82-3.17h-.01a6.01 6.01 0 00-2.7-5.18m1.2 5.18l-3.08-3.08m0 0a6.01 6.01 0 00-5.18-2.7h-.01a14.92 14.92 0 013.17 9.82m1.94-7.04L4 19.5"/></svg>
+            </div>
+            <h2>Our Mission</h2>
+            <p>To provide a progressive, relevant and experiential educational environment where holistic education and learner autonomy is encouraged to develop competencies for life-long learning; enabling learners to be innovation minded.</p>
+        </div>
+
+    </div>
+
+    <!-- Section 3: School Levels (Down to Up Animation) -->
+    <h2 class="section-title">Our School Sections</h2>
+    <div class="grid-container">
+        
+        <!-- Card 1 -->
+        <div class="school-card animate-down-to-up">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=600" alt="Kindergarten">
+            </div>
+            <div class="card-content">
+                <h3>Kindergarten @ WBS</h3>
+                <p>FS1 &ndash; Nursery to FS3 &ndash; Upper KG</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="school-card animate-down-to-up">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=600" alt="Secondary School">
+            </div>
+            <div class="card-content">
+                <h3>Secondary School</h3>
+                <p>6th to 8th Class</p>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="school-card animate-down-to-up">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600" alt="Senior Secondary">
+            </div>
+            <div class="card-content">
+                <h3>Senior Secondary</h3>
+                <p>9th to 12th Class</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-btn">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-3.41c1.656.982 3.511 1.5 5.409 1.5 5.415 0 9.82-4.405 9.824-9.822.002-2.623-1.017-5.089-2.871-6.944C17.094 3.47 14.637 2.45 12.005 2.45c-5.424 0-9.83 4.408-9.834 9.826-.001 1.989.519 3.93 1.508 5.655l-.99 3.615 3.7-.971z"/></svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        function toggleMenu() {
+            document.getElementById('sidebarMenu').classList.toggle('active');
+            document.getElementById('menuOverlay').classList.toggle('active');
+        }
+
+        const observerOptions = { threshold: 0.05 };
+        
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, observerOptions);
+
+        const selectors = ['.animate-down-to-up', '.animate-r-to-l', '.animate-l-to-r'];
+        selectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(element => scrollObserver.observe(element));
+        });
+    </script>
+</body>
+              </html>
+
