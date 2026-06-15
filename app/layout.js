@@ -1,28 +1,20 @@
-import { Merriweather, Playfair_Display } from 'next/font/google';
 import './globals.css';
-
-const merriweather = Merriweather({ 
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
-  variable: '--font-merriweather'
-});
-
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  weight: ['600', '700'],
-  variable: '--font-playfair'
-});
 
 export const metadata = {
   title: 'Our School - Business Demo',
-  description: 'Next.js School Web Showcase',
+  description: 'Welcome to Our School',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${merriweather.variable} ${playfair.variable}`}>
-      <body className="antialiased">{children}</body>
+    <html lang="en">
+      <head>
+        {/* Google Fonts Preconnect and Link Fixes */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
-
