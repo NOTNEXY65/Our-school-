@@ -11,6 +11,7 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          // Dynamic classes injected dynamically on view trigger
           entry.target.classList.add('opacity-100', 'translate-x-0', 'translate-y-0');
         }
       });
@@ -50,9 +51,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --- Section 1: Introduction (Down-to-Up Animation) --- */}
+      {/* --- Section 1: Introduction (Down-to-Up) --- */}
       <main className="max-w-[900px] mx-auto my-16 px-[6%]">
-        <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-800 ease-out">
+        <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-1000 ease-out">
           <h2 className="text-[#004080] text-3xl md:text-4xl font-semibold mb-8 uppercase tracking-wide font-sans">
             Our Legacy
           </h2>
@@ -75,8 +76,8 @@ export default function Home() {
         </h2>
         <div className="max-w-[800px] mx-auto px-5 flex flex-col gap-10">
           
-          {/* Our Vision (Right-to-Left Animation) */}
-          <div className="animate-trigger opacity-0 translate-x-[100px] transition-all duration-800 ease-out bg-white rounded-xl p-10 text-center shadow-lg border border-gray-100">
+          {/* Our Vision (Right-to-Left) */}
+          <div className="animate-trigger opacity-0 translate-x-[100px] transition-all duration-1000 ease-out bg-white rounded-xl p-10 text-center shadow-lg border border-gray-100">
             <div className="w-20 h-20 bg-[#004080] rounded-full mx-auto mb-6 flex items-center justify-center">
               <svg className="w-10 h-10 stroke-white stroke-2 fill-none" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -87,8 +88,8 @@ export default function Home() {
             <p className="text-lg text-gray-600">Empower students with meaningful experiences that enable them to become reflective practitioners and lifelong learners who will uphold the universal values of empathy, service and discipline.</p>
           </div>
 
-          {/* Our Mission (Left-to-Right Animation) */}
-          <div className="animate-trigger opacity-0 -translate-x-[100px] transition-all duration-800 ease-out bg-white rounded-xl p-10 text-center shadow-lg border border-gray-100">
+          {/* Our Mission (Left-to-Right) */}
+          <div className="animate-trigger opacity-0 -translate-x-[100px] transition-all duration-1000 ease-out bg-white rounded-xl p-10 text-center shadow-lg border border-gray-100">
             <div className="w-20 h-20 bg-[#004080] rounded-full mx-auto mb-6 flex items-center justify-center">
               <svg className="w-10 h-10 stroke-white stroke-2 fill-none" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.92 14.92 0 01-9.82 3.17m9.82-3.17h-.01a6.01 6.01 0 00-2.7-5.18m1.2 5.18l-3.08-3.08m0 0a6.01 6.01 0 00-5.18-2.7h-.01a14.92 14.92 0 013.17 9.82m1.94-7.04L4 19.5" />
@@ -101,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- Section 3: School Sections (Down-to-Up Animation) --- */}
+      {/* --- Section 3: School Sections (Down-to-Up) --- */}
       <section className="py-16 max-w-[1200px] mx-auto px-5">
         <h2 className="text-center text-[#004080] text-4xl font-bold mb-12 relative after:content-[''] after:block after:w-16 after:h-1 after:bg-[#0066cc] after:mx-auto after:mt-3 after:rounded font-sans">
           Our School Sections
@@ -109,7 +110,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           
           {/* Card 1 */}
-          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-800 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
+          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-1000 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
             <div className="h-[240px] w-full overflow-hidden">
               <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=600" alt="Kindergarten" className="w-full h-full object-cover" />
             </div>
@@ -120,7 +121,7 @@ export default function Home() {
           </div>
 
           {/* Card 2 */}
-          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-800 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
+          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-1000 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
             <div className="h-[240px] w-full overflow-hidden">
               <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=600" alt="Secondary School" className="w-full h-full object-cover" />
             </div>
@@ -131,7 +132,7 @@ export default function Home() {
           </div>
 
           {/* Card 3 */}
-          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-800 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
+          <div className="animate-trigger opacity-0 translate-y-[50px] transition-all duration-1000 ease-out bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 text-center hover:-translate-y-2 transform duration-300">
             <div className="h-[240px] w-full overflow-hidden">
               <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600" alt="Senior Secondary" className="w-full h-full object-cover" />
             </div>
@@ -153,5 +154,5 @@ export default function Home() {
 
     </div>
   );
-}
-
+        }
+        
